@@ -7,10 +7,20 @@ package net.media.training.designpattern.observer;
  * Time: 10:13:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Cat {
+public class Cat implements EventListener{
     private boolean outdoors;
     private boolean feelingWarm;
     private boolean feelingTired;
+
+    @Override
+    public void update(String eventType){
+        if(eventType == "set"){
+            this.notifySunSet();
+        }
+        else{
+            this.notifySunRose();
+        }
+    }
 
     public boolean isFeelingWarm() {
         return feelingWarm;

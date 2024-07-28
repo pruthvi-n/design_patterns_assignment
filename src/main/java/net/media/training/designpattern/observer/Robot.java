@@ -7,10 +7,20 @@ package net.media.training.designpattern.observer;
  * Time: 10:16:31 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Robot {
+public class Robot implements EventListener{
     private boolean outdoors;
     private boolean feelingWarm;
     private boolean feelingTired;
+
+    @Override
+    public void update(String eventType){
+        if(eventType == "set"){
+            this.notifySunSet();
+        }
+        else{
+            this.notifySunRose();
+        }
+    }
 
     public boolean isOutdoors() {
         return outdoors;

@@ -14,7 +14,11 @@ public class GameTestClient {
         cat = new Cat();
         robot = new Robot();
 
-        sun = new Sun(robot, person, dog, cat);
+        sun = new Sun(new String[]{"rise", "set"});
+        sun.events.subscribe(cat);
+        sun.events.subscribe(dog);
+        sun.events.subscribe( robot);
+        sun.events.subscribe(person);
         game = new Game(sun);
     }
 

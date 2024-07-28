@@ -24,7 +24,11 @@ public class SunTestClient {
         this.cat = new Cat();
         this.dog = new Dog();
         this.robot = new Robot();
-        this.sun = new Sun(robot, person, dog, cat);
+        sun = new Sun(new String[]{"rise", "set"});
+        sun.events.subscribe(cat);
+        sun.events.subscribe(dog);
+        sun.events.subscribe( robot);
+        sun.events.subscribe(person);
     }
 
     public void aFewCharactersGoOutdoors() {

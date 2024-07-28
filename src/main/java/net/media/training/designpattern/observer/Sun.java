@@ -9,16 +9,10 @@ package net.media.training.designpattern.observer;
  */
 public class Sun {
     private boolean isUp;
-    private final Robot robot;
-    private final Person person;
-    private final Dog dog;
-    private final Cat cat;
+    EventManager events;
 
-    public Sun(Robot robot, Person person, Dog dog, Cat cat) {
-        this.robot = robot;
-        this.person = person;
-        this.dog = dog;
-        this.cat = cat;
+    public Sun(String []events) {
+        this.events = new EventManager(events);
     }
 
     public boolean isUp() {
@@ -27,41 +21,11 @@ public class Sun {
 
     public void set() {
         isUp = false;
-
-        if (robot.isOutdoors()) {
-            robot.notifySunSet();
-        }
-
-        if (person.isOutdoors()) {
-            person.notifySunSet();
-        }
-
-        if (dog.isOutdoors()) {
-            dog.notifySunSet();
-        }
-
-        if (cat.isOutdoors()) {
-            cat.notifySunSet();
-        }
+        events.notify("set");
     }
 
     public void rise() {
         isUp = true;
-
-        if (robot.isOutdoors()) {
-            robot.notifySunRose();
-        }
-
-        if (person.isOutdoors()) {
-            person.notifySunRose();
-        }
-
-        if (dog.isOutdoors()) {
-            dog.notifySunRose();
-        }
-
-        if (cat.isOutdoors()) {
-            cat.notifySunRose();
-        }
+        events.notify("rise");
     }
 }

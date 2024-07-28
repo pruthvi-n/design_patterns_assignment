@@ -9,6 +9,7 @@ import java.util.List;
  * Time: 10:04:03 PM
  * To change this template use File | Settings | File Templates.
  */
+
 public class PeopleDataSource {
     public static String getPeopleXml(List<Person> persons) {
         String finalXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
