@@ -17,26 +17,26 @@ import static junit.framework.Assert.*;
 public class PreRefactoring {
     @Test
     public void BasicStuffWorks() {
-        List<File> files = new ArrayList();
+        List<FileComponent> files = new ArrayList();
 
         files.add(new File("file1", 10));
         files.add(new File("file2", 10));
         files.add(new File("File3", 10));
 
-        List<Directory> directories = new ArrayList();
-        Directory dataDir = new Directory("data", files, new ArrayList());
+        List<FileComponent> directories = new ArrayList();
+        FileComponent dataDir = new Directory("data", files);
         directories.add(dataDir);
 
-        Directory src = new Directory("src", new ArrayList(), directories);
+        FileComponent src = new Directory("src",directories);
         assertEquals("Size should be 30.", 30, src.getSize());
 
-        assertTrue("File file1 should exist.", src.fileExists("file1"));
-        assertTrue("Directory data should exist.", src.directoryExists("data"));
-        assertTrue("Directory src should exist.", src.directoryExists("src"));
+        assertTrue("File file1 should exist.", src.componentExist("file1"));
+        assertTrue("Directory data should exist.", src.componentExist("data"));
+        assertTrue("Directory src should exist.", src.componentExist("src"));
 
         dataDir.delete();
 
-        assertFalse("File file1 should not exist.", src.fileExists("file1"));
-        assertFalse("Directory data should not exist.", src.directoryExists("data"));
+        assertFalse("File file1 should not exist.", src.componentExist("file1"));
+        assertFalse("Directory data should not exist.", src.componentExist("data"));
     }
 }
